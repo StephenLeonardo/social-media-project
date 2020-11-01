@@ -19,5 +19,9 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.HomePage.as_view(), name='home')
+    path('', views.HomePage.as_view(), name='home'),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('login_redirect/', views.LoginRedirectPage.as_view(), name='login_redirect'),
+    path('logout_redirect/', views.LogoutRedirectPage.as_view(), name='logout_redirect'),
 ]
