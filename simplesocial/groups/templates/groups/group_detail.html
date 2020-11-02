@@ -1,4 +1,4 @@
-{% extends "groups/ group_base.html" %}
+{% extends "groups/group_base.html" %}
 {% block pre_group %}
   <h1>{{group.name}}</h1>
   <h2>Member Count: {{group.members.count}}</h2>
@@ -15,6 +15,8 @@
     {% endif %}
   </div>
   
+  <hr>
+  
 {% endblock %}
 
 
@@ -22,7 +24,18 @@
   <div class="col-md-8">
     {% if group.posts.count == 0 %}
       <h2>No post in this group yet</h2>
+      <a href="{% url 'posts:create' %}" class="btn btn-primary">
+        Create New Post
+      </a>
     {% else %}
+    <div class="row">
+      <div class="col-md-12">
+        <a href="{% url 'posts:create' %}" class="btn btn-primary">
+          Create New Post
+        </a>
+      </div>
+    </div>
+    <hr>
       {% for post in group.posts.all %}
         {% include "posts/_post.html" %}
       {% endfor %}
